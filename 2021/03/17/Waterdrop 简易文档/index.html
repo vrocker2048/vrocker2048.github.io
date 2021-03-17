@@ -18,7 +18,7 @@
   <meta name="author" content="V">
   <meta name="keywords" content="">
   
-  <title>V - V Blog</title>
+  <title>Waterdrop 简易文档 - V Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="V">
+            <span class="h2" id="subtitle" title="Waterdrop 简易文档">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-16 18:00" pubdate>
-        2021年3月16日 晚上
+      <time datetime="2021-03-17 11:49" pubdate>
+        2021年3月17日 中午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      636 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -233,14 +233,93 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">V</h1>
+            <h1 style="display: none">Waterdrop 简易文档</h1>
             
             <div class="markdown-body">
-              
+              <h2 id="Waterdrop-简易文档"><a href="#Waterdrop-简易文档" class="headerlink" title="Waterdrop 简易文档"></a>Waterdrop 简易文档</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><ol>
+<li><p>官方文档 (1.x版本)</p>
+<p><a target="_blank" rel="noopener" href="https://interestinglab.github.io/waterdrop-docs/#/zh-cn/v1/quick-start">https://interestinglab.github.io/waterdrop-docs/#/zh-cn/v1/quick-start</a></p>
+</li>
+<li><p>下载地址 (v1.5.1)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/InterestingLab/waterdrop/releases/tag/v1.5.1">https://github.com/InterestingLab/waterdrop/releases/tag/v1.5.1</a></p>
+</li>
+<li><p>解压到指定目录</p>
+<p><code>unzip waterdrop-.zip</code><br><code>ln -s waterdrop- waterdrop</code></p>
+</li>
+</ol>
+<h3 id="2-基本信息"><a href="#2-基本信息" class="headerlink" title="2. 基本信息"></a>2. 基本信息</h3><ol>
+<li><p>安装地址</p>
+<p>1.1.1.187, 1.1.1.148, 1.1.1.149 </p>
+<p><code>/usr/local/waterdrop</code></p>
+</li>
+<li><p>启动脚本</p>
+<p><code>/usr/local/waterdrop/bin/start-waterdrop.sh</code></p>
+</li>
+<li><p>spark路径(已配置)</p>
+<p><code>/usr/local/waterdrop/waterdrop-env.sh</code></p>
+</li>
+</ol>
+<h3 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h3><ol>
+<li><p>启动waterdrop时需要读取相应的<strong>配置</strong>, 完整的waterdrop配置包括spark, input, filter, output:</p>
+<figure class="highlight properties"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs properties"><span class="hljs-attr">spark</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">...</span><br><span class="hljs-attr">&#125;</span><br><br><span class="hljs-attr">input</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">...</span><br><span class="hljs-attr">&#125;</span><br><br><span class="hljs-attr">filter</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">...</span><br><span class="hljs-attr">&#125;</span><br><br><span class="hljs-attr">output</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">...</span><br><span class="hljs-attr">&#125;</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p><code>spark</code>: 是spark相关的配置</p>
+<p>​    例如:</p>
+<p>​        spark.driver.cores,</p>
+<p>​        spark.executor.memory等. </p>
+<p>​    注意: 使用hive作为input时, <strong>一定</strong>要在此处配置 <code>spark.sql.catalogImplementation = &quot;hive&quot;</code></p>
+</li>
+<li><p><code>input</code>: 可配置任意的input插件及其参数</p>
+</li>
+<li><p><code>filter</code>: filter中的多个插件按配置顺序形成了数据处理的pipeline, 上一个filter的输出是下一个filter的输入</p>
+</li>
+<li><p><code>output</code>:  filter处理完的数据，会发送给<code>output</code>中配置的每个插件</p>
+</li>
+</ul>
+</li>
+<li><p>hive2clickhouse配置示例</p>
+<figure class="highlight properties"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs properties"><span class="hljs-attr">spark</span> <span class="hljs-string">&#123;</span><br>  <span class="hljs-meta">spark.app.name</span> = <span class="hljs-string">&quot;Waterdrop_test&quot;</span><br>  <span class="hljs-meta">spark.executor.instances</span> = <span class="hljs-string">2</span><br>  <span class="hljs-meta">spark.executor.cores</span> = <span class="hljs-string">2</span><br>  <span class="hljs-meta">spark.executor.memory</span> = <span class="hljs-string">&quot;4g&quot;</span><br><span class="hljs-comment">  #必须配置</span><br>  <span class="hljs-meta">spark.sql.catalogImplementation</span> = <span class="hljs-string">&quot;hive&quot;</span><br><span class="hljs-attr">&#125;</span><br><br><br><br><span class="hljs-attr">input</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">hive</span> <span class="hljs-string">&#123;</span><br><span class="hljs-comment">    	#sql语句</span><br>        <span class="hljs-attr">pre_sql</span> = <span class="hljs-string">&quot;SELECT empno, ename, sal FROM default.emp&quot;</span><br><span class="hljs-comment">        #spark中的临时表</span><br>        <span class="hljs-attr">table_name</span> = <span class="hljs-string">&quot;hive2ck&quot;</span><br>        <br><span class="hljs-comment">        #input插件 https://interestinglab.github.io/waterdrop-docs/#/zh-cn/v1/configuration/input-plugin</span><br>    <span class="hljs-attr">&#125;</span><br><span class="hljs-attr">&#125;</span><br><br><br><span class="hljs-attr">filter</span> <span class="hljs-string">&#123;</span><br><span class="hljs-comment">	#filter插件 https://interestinglab.github.io/waterdrop-docs/#/zh-cn/v1/configuration/filter-plugin</span><br><span class="hljs-attr">&#125;</span><br><br><br><span class="hljs-attr">output</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">clickhouse</span> <span class="hljs-string">&#123;</span><br>        <span class="hljs-attr">host</span> = <span class="hljs-string">&quot;1.1.1.187:8123&quot;</span><br>        <span class="hljs-attr">database</span> = <span class="hljs-string">&quot;test&quot;</span><br>        <span class="hljs-attr">table</span> = <span class="hljs-string">&quot;test_emp&quot;</span><br>        <span class="hljs-attr">fields</span> = <span class="hljs-string">[&quot;empno&quot;, &quot;ename&quot;, &quot;sal&quot;]</span><br><span class="hljs-comment">        # username =</span><br><span class="hljs-comment">        # password =</span><br>        <br><span class="hljs-comment">        # output插件 https://interestinglab.github.io/waterdrop-docs/#/zh-cn/v1/configuration/output-plugin</span><br>    <span class="hljs-attr">&#125;</span><br><span class="hljs-attr">&#125;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>注意: 必须保证hive的metastore是在服务状态。启动命令 <code>hive --service metastore</code> 服务的默认端口的<code>9083</code>. cluster、client、local模式下必须把<strong>hive-site.xml</strong>置于提交任务节点的**$HADOOP_CONF<strong>目录下(或者放在</strong>$SPARK_HOME/conf<strong>下面),IDE本地调试将其放在</strong>resources**目录</p>
+</li>
+<li><p>将配置文件保存为<code>*.conf</code>, 在运行waterdrop时加载.</p>
+</li>
+</ol>
+<h3 id="4-运行"><a href="#4-运行" class="headerlink" title="4. 运行"></a>4. 运行</h3><p>注意: 此处的配置文件以<code>application.conf</code>为例</p>
+<ol>
+<li><p>在本地以local方式运行Waterdrop</p>
+<p><code>./bin/start-waterdrop.sh --master local[4] --deploy-mode client --config ./config/application.conf</code></p>
+</li>
+<li><p>在Spark Standalone集群上运行Waterdrop</p>
+<p><code># client 模式 </code></p>
+<p> <code>./bin/start-waterdrop.sh --master spark://ip:7077 --deploy-mode client --config ./config/application.conf </code></p>
+<p><code># cluster 模式 </code></p>
+<p><code>./bin/start-waterdrop.sh --master spark://ip:7077 --deploy-mode cluster --config ./config/application.conf</code></p>
+</li>
+<li><p>在Yarn集群上运行Waterdrop</p>
+<p><code># client 模式 </code></p>
+<p> <code>./bin/start-waterdrop.sh --master yarn --deploy-mode client --config ./config/application.conf </code></p>
+<p><code># cluster 模式 </code></p>
+<p><code>./bin/start-waterdrop.sh --master yarn --deploy-mode cluster --config ./config/application.conf</code></p>
+</li>
+<li><p>在Mesos上运行Waterdrop</p>
+<p><code># cluster 模式 </code></p>
+<p><code>./bin/start-waterdrop.sh --master mesos://ip:7077 --deploy-mode cluster --config ./config/application.conf</code></p>
+</li>
+</ol>
+
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/">技术栈</a>
+                    
+                  </div>
                 
                 
               </div>
